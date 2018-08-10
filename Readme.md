@@ -1,1 +1,1 @@
-**Takes highlight clips from twitch edits them concatenates them and then makes it into a youtube video.
+##### Takes highlight clips from twitch edits them concatenates them and then makes it into a youtube video.
