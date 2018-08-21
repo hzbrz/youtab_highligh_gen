@@ -19,7 +19,10 @@ counter = 0
 video_duration = 0
 # array for channel corresponding with vid
 corr_channel = []
+# download links array
 dl_links = []
+# clip titel array
+titles = []
 
 while video_duration < 900:
   counter = counter + 1
@@ -40,11 +43,12 @@ while video_duration < 900:
         video_duration = video_duration + clip_duration
         # checking for duplicate channel names for title of download video
         if channel_name in corr_channel:
-          corr_channel = corr_channel + [channel_name+"_1"]
+          corr_channel = corr_channel + [channel_name+"_"+str(counter)]
         else:
           corr_channel = corr_channel + [channel_name]  
         # array for download links  
         dl_links.append(twitch_dl_url)
+        titles.append(title)
 
         # print("clip duration: ", clip_duration, "\tvideo duration: ", video_duration, "minutes: ",video_duration/60)
         # print(channel_name, twitch_dl_url)
@@ -52,8 +56,8 @@ while video_duration < 900:
 
 
 for i in range(len(dl_links)):
-  output_dl_path = credentials.dl_test_folder + corr_channel[i] + ".mp4" 
-  print("downloading...", corr_channel[i])
+  output_dl_path = credentials.test_folder + corr_channel[i] + ".mp4" 
+  print("downloading...", corr_channel[i], ': ', titles[i])
   urllib.request.urlretrieve(dl_links[i], output_dl_path)
   
-print('Finished downloading all', len(dl_links), 'videos')  
+print('Finished downloading all', len(dl_links), "videos, it's: ", video_duration/60, ' mins long')  
